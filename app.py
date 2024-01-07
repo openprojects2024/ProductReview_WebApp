@@ -7,6 +7,10 @@ model = load_model('models/LSTM.h5')
 token = pickle.load((open('token.pkl', 'rb')))
 max_len = 130
 
+def home():
+    st.title("")
+    st.write("Welcome to the Home Page!")
+
 def find_star(result):
     if result >= 0.8:
         st.markdown("<span style='color:green;font-size: 80px'>* * * * *</span>", unsafe_allow_html=True)

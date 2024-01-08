@@ -9,6 +9,13 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences   # to do padd
 from sklearn.model_selection import train_test_split
 import pickle
 
+def image_path(selected_product):
+    if selected_product == "American Tourist Bag":
+        return "products/products\American Tourist Bag.png"
+    if selected_product == "Iphone 15 Pro":
+        return "products/products\Iphone 15 Pro.jpg"
+    if selected_product == "Refrigerator (Samsung)":
+        return "products/products\Refrigerator (Samsung).png"
 
 def preprocess_reviews(review,max_length,token):
     # Pre-process input

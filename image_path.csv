@@ -1,2 +1,4 @@
-Product_Name,image_path
-IPhone 15 Pro,C:/Users/krishnendu/VSCODE_projects/ML-recruitment-assessment/products/iphone15_pro
+,Product_Name,image_path
+0,American Tourist Bag,products/products\American Tourist Bag.png
+1,Iphone 15 Pro,products/products\Iphone 15 Pro.jpg
+2,Refrigerator (Samsung),products/products\Refrigerator (Samsung).png

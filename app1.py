@@ -59,8 +59,9 @@ def sentiment(result):
         return 'Positive'
 Review_customer = {"Product_Name":"","Review":"","Sentiment":""}
 review_data = pd.read_csv("Review_customer.csv")
+review_data = review_data[["Product_Name","Review","Sentiment"]]
 
-def write_review(selected_product):
+def write_review(selected_product,review_data):
     ## Back ground Image entry
     page_element="""
     <style>
@@ -96,6 +97,7 @@ def write_review(selected_product):
         Review_customer["Product_Name"] = (str(selected_product))
         Review_customer["Review"] = (str(review))
         review_data.loc[review_data.shape[0]] = Review_customer
+        review_data = review_data[["Product_Name","Review","Sentiment"]]
         review_data.to_csv("Review_customer.csv")
 
 def product_description(selected_product):
@@ -251,10 +253,9 @@ def main(selection):
         product_list()
     elif selection == "Write Review":
         st.markdown("<h1 style='text-align: center; color: yellow;'>Give Your Valuable Feedback</h1>", unsafe_allow_html=True)
-        product_review = pd.read_csv("product_review.csv")
         st.markdown("<span style='color:white;font-size: 20px'>Select a product to give your review</span>", unsafe_allow_html=True)
         selected_product = st.selectbox("",image_paths_individual['Product_Name'].unique())
-        write_review(selected_product)
+        write_review(selected_product,review_data)
         st.dataframe(review_data)
     elif selection == "Settings":
         settings()

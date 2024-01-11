@@ -1,3 +1,6 @@
-,Unnamed: 0.1,Unnamed: 0,Product_Name,Review,Sentiment
-0,0.0,,IPhone 15 Pro,Good,Positive
-1,,,IPhone 15 Pro,Good Waste of money,Negative
+,Product_Name,Review,Sentiment
+0,IPhone 15 Pro,Good,Positive
+1,IPhone 15 Pro,Good Waste of money,Negative
+2,American Tourist Bag,Bage quality was satisfactory,Negative
+3,American Tourist Bag,Bage quality was not  satisfactory,Negative
+4,American Tourist Bag,The bag was ok ok,Positive

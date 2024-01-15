@@ -6,6 +6,8 @@ import pickle
 import os
 import cv2
 import pandas as pd
+import emoji
+import numpy as np
 
 model = load_model('models/LSTM.h5')
 token = pickle.load((open('token.pkl', 'rb')))
@@ -19,12 +21,29 @@ def find_star(result):
         st.markdown("<span style='color:green;font-size: 80px'>* * * * *</span>", unsafe_allow_html=True)
     elif result>0.65:
         st.markdown("<span style='color:grreen;font-size: 80px'>* * * *</span>", unsafe_allow_html=True)
+        
     elif result>0.5:
         st.markdown("<span style='color:white;font-size: 80px'>* * *</span>", unsafe_allow_html=True)
     elif result>0.3:
         st.markdown("<span style='color:red;font-size: 80px'>* *</span>", unsafe_allow_html=True)
     else:
         st.markdown("<span style='color:red;font-size: 80px'>*</span>", unsafe_allow_html=True)
+        
+def no_star(result):
+    if result >= 0.8:
+        return 5
+    elif result>0.65:
+        #st.markdown("<span style='color:grreen;font-size: 80px'>* * * *</span>", unsafe_allow_html=True)
+        return 4
+    elif result>0.5:
+        #st.markdown("<span style='color:white;font-size: 80px'>* * *</span>", unsafe_allow_html=True)
+        return 3
+    elif result>0.3:
+        #st.markdown("<span style='color:red;font-size: 80px'>* *</span>", unsafe_allow_html=True)
+        return 2
+    else:
+        #st.markdown("<span style='color:red;font-size: 80px'>*</span>", unsafe_allow_html=True)
+        return 1
 
 def display_images_from_folder(folder_path):
     image_extensions = ["png", "jpg", "jpeg", "gif"]  # Add other extensions if needed
@@ -57,9 +76,11 @@ def sentiment(result):
         return 'Neutral'
     else:
         return 'Positive'
-Review_customer = {"Product_Name":"","Review":"","Sentiment":""}
+Review_customer = {"Product_Name":"","Review":"","Sentiment":"","Star":""}
 review_data = pd.read_csv("Review_customer.csv")
-review_data = review_data[["Product_Name","Review","Sentiment"]]
+#review_data["Star"] = ''
+#review_data = review_data[["Product_Name","Review","Sentiment","Star"]]
+#review_data.drop(review_data.index, inplace=True)
 
 def write_review(selected_product,review_data):
     ## Back ground Image entry
@@ -84,6 +105,9 @@ def write_review(selected_product,review_data):
     st.image(imagee, use_column_width=True)
     
     product_description(selected_product)
+    overall = np.round(review_data[review_data['Product_Name']==selected_product]['Star'].apply(overall_star).mean(),1)
+    overall = str(overall) + emoji.emojize( ':star:')
+    st.markdown(f"<span style='color:yellow;font-size: 30px'>Overall Rating : {overall}</span>", unsafe_allow_html=True)
     ## Take the review form the user for the selected product
     st.markdown("<span style='color:white;font-size: 20px'>Enter the review</span>", unsafe_allow_html=True)
     #st.text_area("This is the text area")
@@ -96,8 +120,9 @@ def write_review(selected_product,review_data):
         Review_customer["Sentiment"] = (str(sentiment(result)))
         Review_customer["Product_Name"] = (str(selected_product))
         Review_customer["Review"] = (str(review))
+        Review_customer["Star"] = str(no_star(result)) + emoji.emojize(" :star:")
         review_data.loc[review_data.shape[0]] = Review_customer
-        review_data = review_data[["Product_Name","Review","Sentiment"]]
+        review_data = review_data[["Product_Name","Review","Sentiment","Star"]]
         review_data.to_csv("Review_customer.csv")
 
 def product_description(selected_product):
@@ -240,7 +265,8 @@ def product_description(selected_product):
         )
         return True
 
-
+def overall_star(star):
+    return int(star.split()[0])
                    
 
 def main(selection):
@@ -256,7 +282,8 @@ def main(selection):
         st.markdown("<span style='color:white;font-size: 20px'>Select a product to give your review</span>", unsafe_allow_html=True)
         selected_product = st.selectbox("",image_paths_individual['Product_Name'].unique())
         write_review(selected_product,review_data)
-        st.dataframe(review_data)
+        st.dataframe(review_data[review_data['Product_Name']==selected_product][["Product_Name","Review","Star"]],use_container_width= True)
+        
     elif selection == "Settings":
         settings()
 

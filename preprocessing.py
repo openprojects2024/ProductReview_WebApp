@@ -34,3 +34,7 @@ def preprocess_reviews(review,max_length,token):
     tokenize_words = pad_sequences(tokenize_words, maxlen=max_length, padding='post', truncating='post')
 
     return tokenize_words
+
+def show_review(selected_product):
+    pass
+    

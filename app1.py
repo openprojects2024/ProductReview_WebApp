@@ -264,7 +264,86 @@ def product_description(selected_product):
             unsafe_allow_html=True
         )
         return True
+    if selected_product == "Amazon Echo":
+        st.markdown("<h2 style='text-align: center; color: yellow;font-size: 30px'>Amazon Echo</h2>", unsafe_allow_html=True)
+        st.markdown("<span style='text-align: center; color: yellow;font-size: 30px'>Price: Rs. 27090</span>", unsafe_allow_html=True)
+        
+        st.markdown(
+            """
+            
+            <div style="color: white;">
 
+            **PRODUCT DETAILS**
+            Amazon Echo Smart Speaker  
+            Model: Echo (4th generation)  
+            Voice Assistant: Alexa  
+            Smart Home Integration  
+            Streaming Music and Podcasts  
+
+            ---  
+            **Key Features**  
+            Powerful speakers with Dolby processing  
+            Voice control your smart home  
+            Stream music from popular services  
+            Make hands-free calls  
+
+            ---  
+            **Design**  
+            Modern spherical design  
+            Fabric finish  
+            Available in different colors  
+
+            ---  
+            **Connectivity**  
+            Wi-Fi and Bluetooth compatible  
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        return True
+    if selected_product == "Dell XPS Laptop":
+        st.markdown("<h2 style='text-align: center; color: yellow;font-size: 30px'>Dell XPS Laptop</h2>", unsafe_allow_html=True)
+        st.markdown("<span style='text-align: center; color: yellow;font-size: 30px'>Price: Rs. 67500</span>", unsafe_allow_html=True)
+        
+        st.markdown(
+            """
+            
+            <div style="color: white;">
+
+            **PRODUCT DETAILS**
+            Dell XPS Laptop  
+            Model: XPS 13  
+            Display: 13.4-inch FHD+ InfinityEdge  
+            Processor: Intel Core i7  
+            RAM: 16 GB  
+            Storage: 512 GB SSD  
+            Operating System: Windows 10  
+
+            ---  
+            **Key Features**  
+            Stunning 4-sided InfinityEdge display  
+            Powerful performance with Intel Core i7  
+            Ultra-slim design  
+            Backlit keyboard  
+            Dell Cinema for immersive entertainment  
+
+            ---  
+            **Connectivity**  
+            Thunderbolt 3  
+            USB-C  
+            MicroSD card reader  
+            Headphone jack  
+
+            ---  
+            **Battery Life**  
+            Up to 14 hours   
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
 def overall_star(star):
     return int(star.split()[0])
                    

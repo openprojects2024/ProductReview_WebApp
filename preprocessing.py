@@ -16,6 +16,10 @@ def image_path(selected_product):
         return "products/products\Iphone 15 Pro.jpg"
     if selected_product == "Refrigerator (Samsung)":
         return "products/products\Refrigerator (Samsung).png"
+    if selected_product == "Amazon Echo":
+        return "products/products\Amazon Echo.jpg"
+    if selected_product == "Dell XPS Laptop":
+        return "products/products\Dell XPS laptop.jpg"
 
 def preprocess_reviews(review,max_length,token):
     # Pre-process input

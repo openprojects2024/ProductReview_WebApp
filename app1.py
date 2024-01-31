@@ -308,7 +308,6 @@ def product_description(selected_product):
         
         st.markdown(
             """
-            
             <div style="color: white;">
 
             **PRODUCT DETAILS**
@@ -340,6 +339,7 @@ def product_description(selected_product):
             Up to 14 hours   
 
             </div>
+            
             """,
             unsafe_allow_html=True
         )
@@ -362,9 +362,6 @@ def main(selection):
         selected_product = st.selectbox("",image_paths_individual['Product_Name'].unique())
         write_review(selected_product,review_data)
         st.dataframe(review_data[review_data['Product_Name']==selected_product][["Product_Name","Review","Star"]],use_container_width= True)
-        
-    elif selection == "Settings":
-        settings()
 
 def product_list():
     page_element="""

@@ -16,4 +16,4 @@
 >>>>1. in the "app1.py" find the function "product_description(selected_product)" and add a silimar if condition to add the description as the similar format is used there.
 >>>>
 >>>>
-For docker image use the version Python 3.9, above that scikit-learn will not be installed through docker image.
+For docker image use the version Python 3.8-slim, above that scikit-learn will not be installed through docker image.
